@@ -10,4 +10,4 @@ import Directory from '../../components/directory/Directory';
     )
 }
 
-export default Homepage;
+export default Homepage; 
