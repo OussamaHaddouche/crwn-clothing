@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   createAuthUserWitheEmailAndPassword,
   createUserDocumentFromAuth,
@@ -6,7 +7,7 @@ import {
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input-component";
 
-import "./sign-up-form.styles.scss"
+import "./sign-up-form.styles.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -84,7 +85,9 @@ const SignUpForm = () => {
           required
           onChange={handleChange}
         />
-        <Button type="submit" buttonType="google">Sign Up</Button>
+        <Button type="submit" buttonType="google">
+          Sign Up
+        </Button>
       </form>
     </div>
   );

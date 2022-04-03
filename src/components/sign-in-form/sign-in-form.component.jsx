@@ -1,6 +1,6 @@
 import { useState } from "react";
+
 import {
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
@@ -26,21 +26,22 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response  = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(response)
+       await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
     } catch (error) {
-        if(error.code === "auth/wrong-password"){
-            alert("incorrect password for email")
-        }else if(error.code === "auth/user-not-found"){
-            alert("no user associated with this email")
-        }
+      if (error.code === "auth/wrong-password") {
+        alert("incorrect password for email");
+      } else if (error.code === "auth/user-not-found") {
+        alert("no user associated with this email");
+      }
       console.log("error while signing in with email and password", error);
     }
   };
 
   const handleGoogleSignIn = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
