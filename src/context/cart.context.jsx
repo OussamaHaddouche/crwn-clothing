@@ -78,7 +78,6 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    console.log("test")
     setTotalPrice(countTotalPrice(cartItems));
   }, [cartItems]);
 
