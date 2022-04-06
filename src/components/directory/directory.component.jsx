@@ -12,8 +12,7 @@ const Directory = () => {
     <DirectoryContainer>
       {categoriesNames.map((category) => {
         const categoryData = categories[category];
-        console.log({categories, categoryData})
-        return <DirectoryItem key={category} category={categoryData} />;
+        return <DirectoryItem key={category} title={category} categoryData={categoryData} />;
       })}
     </DirectoryContainer>
   );

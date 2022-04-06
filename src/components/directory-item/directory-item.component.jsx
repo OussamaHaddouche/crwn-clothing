@@ -8,8 +8,8 @@ import {
 
 const BASE_ROUTE = "shop";
 
-const DirectoryItem = ({ category }) => {
-  const { imageUrl, title } = category;
+const DirectoryItem = ({ categoryData, title }) => {
+  const { imageUrl } = categoryData;
   const navigate = useNavigate();
 
   const goToCategoryPage = () => {
