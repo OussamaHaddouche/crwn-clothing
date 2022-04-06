@@ -11,7 +11,7 @@ const Category = () => {
   const { categories } = useContext(CategoriesContext);
 
   useEffect(() => {
-    setProducts(categories[category]);
+    setProducts(categories[category].items);
   }, [category, categories]);
 
   return (

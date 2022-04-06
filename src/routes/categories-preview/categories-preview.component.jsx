@@ -11,7 +11,7 @@ const CategoriesPreview = () => {
         <CategoryPreview
           key={category}
           title={category}
-          products={categories[category].slice(0, 4)}
+          products={categories[category].items.slice(0, 4)}
         />
       ))}
     </div>

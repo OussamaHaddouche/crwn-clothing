@@ -1,13 +1,20 @@
+import { useContext } from "react";
+
 import DirectoryItem from "../directory-item/directory-item.component";
+import { CategoriesContext } from "../../context/categories.context";
 
 import { DirectoryContainer } from "./directory.styles";
 
-const Directory = ({ categories }) => {
+const Directory = () => {
+  const { categories } = useContext(CategoriesContext);
+  const categoriesNames = Object.keys(categories);
   return (
     <DirectoryContainer>
-      {categories.map((category) => (
-        <DirectoryItem key={category.id} category={category} />
-      ))}
+      {categoriesNames.map((category) => {
+        const categoryData = categories[category];
+        console.log({categories, categoryData})
+        return <DirectoryItem key={category} category={categoryData} />;
+      })}
     </DirectoryContainer>
   );
 };
