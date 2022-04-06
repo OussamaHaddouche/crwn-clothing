@@ -85,7 +85,7 @@ const SignUpForm = () => {
           required
           onChange={handleChange}
         />
-        <Button type="submit" buttonType="google">
+        <Button type="submit">
           Sign Up
         </Button>
       </form>
