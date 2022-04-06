@@ -6,7 +6,7 @@ import { CategoriesContext } from "../../context/categories.context";
 const CategoriesPreview = () => {
   const { categories } = useContext(CategoriesContext);
   return (
-    <div className="categories-preview-container">
+    <div>
       {Object.keys(categories).map((category) => (
         <CategoryPreview
           key={category}
