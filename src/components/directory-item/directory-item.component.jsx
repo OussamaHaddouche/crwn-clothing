@@ -8,12 +8,11 @@ import {
 
 const BASE_ROUTE = "shop";
 
-const DirectoryItem = ({ categoryData, title }) => {
-  const { imageUrl } = categoryData;
+const DirectoryItem = ({ title, imageUrl }) => {
   const navigate = useNavigate();
 
   const goToCategoryPage = () => {
-    navigate(`${BASE_ROUTE}/${title}`);
+    navigate(`${BASE_ROUTE}/${title.toLowerCase()}`);
   };
 
   return (
