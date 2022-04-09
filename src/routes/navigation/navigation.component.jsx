@@ -7,8 +7,8 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import { setIsCartOpen } from "../../store/cart/cart.action";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { signOutStart } from "../../store/user/user.action";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import {
   NavigationContainer,
@@ -20,14 +20,11 @@ import {
 const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+
   const isCartOpen = useSelector(selectIsCartOpen);
 
-  const signOutHandler = async () => {
-    try {
-      await signOutUser();
-    } catch (error) {
-      console.log("cant log you out buddy");
-    }
+  const signOutHandler = () => {
+    dispatch(signOutStart())
   };
 
   const toggleCart = () => {

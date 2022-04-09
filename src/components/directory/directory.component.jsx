@@ -7,7 +7,6 @@ import { DirectoryContainer } from "./directory.styles";
 
 const Directory = () => {
   const categories = useSelector(selectCategories);
-  console.log("render")
   return (
     <DirectoryContainer>
       {categories.map(({ title, imageUrl }) => {
