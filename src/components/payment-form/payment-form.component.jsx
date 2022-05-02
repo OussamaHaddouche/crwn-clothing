@@ -1,12 +1,16 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { BUTTON_TYPES_CLASSES } from "../button/button.component";
 
-import { FormContainer, PaymentFormContainer, PaymentButton } from "./payment-form.styles";
+import {
+  FormContainer,
+  PaymentFormContainer,
+  PaymentButton,
+} from "./payment-form.styles";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -15,6 +19,24 @@ const PaymentForm = () => {
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
+  useEffect(() => {
+    const appearance = {
+      theme: 'night',
+    
+      variables: {
+        colorPrimary: '#0570de',
+        colorBackground: '#ffffff',
+        colorText: '#30313d',
+        colorDanger: '#df1b41',
+        fontFamily: 'Ideal Sans, system-ui, sans-serif',
+        spacingUnit: '2px',
+        borderRadius: '4px',
+        // See all possible variables below
+      }
+    };
+    if (stripe) stripe.elements({ appearance });
+  }, [stripe]);
+
   const paymentHandler = async (e) => {
     e.preventDefault();
 
@@ -22,7 +44,7 @@ const PaymentForm = () => {
       return;
     }
 
-    setIsProcessingPayment(true)
+    setIsProcessingPayment(true);
 
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "post",
@@ -43,7 +65,7 @@ const PaymentForm = () => {
       },
     });
 
-    setIsProcessingPayment(false)
+    setIsProcessingPayment(false);
 
     if (paymentResult.error) {
       alert(paymentResult.error);
@@ -60,7 +82,7 @@ const PaymentForm = () => {
     <PaymentFormContainer>
       <FormContainer onSubmit={paymentHandler}>
         <h2>Credit Card Payment:</h2>
-        <CardElement />
+        <CardElement options={{size: "mobile"}} />
         <PaymentButton
           isLoading={isProcessingPayment}
           buttonType={BUTTON_TYPES_CLASSES.inverted}
